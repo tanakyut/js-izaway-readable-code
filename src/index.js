@@ -9,4 +9,5 @@ const encoding = 'utf-8';
 
 readWordFromFileAsync(fileName, encoding).then(
 	word => console.log(word),
+	// TODO: readWordFromFileAsync のバグのため、下記エラーメッセージが出力されない
 	() => console.error(`ファイル ${fileName} が見つかりません。`));
