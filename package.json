@@ -1,0 +1,21 @@
+{
+  "name": "js-izaway-readable-code",
+  "version": "1.0.0",
+  "description": "研修用",
+  "main": "index.js",
+  "scripts": {
+    "index": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/js-izaway/js-izaway-readable-code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/js-izaway/js-izaway-readable-code/issues"
+  },
+  "homepage": "https://github.com/js-izaway/js-izaway-readable-code#readme"
+}
