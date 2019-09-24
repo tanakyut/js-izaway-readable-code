@@ -4,14 +4,9 @@ const readline = require("readline");
 
 const readWordFromFileAsync = (path, encoding) => {
 	return new Promise((resolve, reject) => {
-		let alreadyRead = false;
+		let words = [];
 		const readOneLine = (line = '') => {
-			if (alreadyRead) {
-				return;
-			}
-
-			alreadyRead = true;
-			resolve(line);
+			words.push(line);
 		}
 
 		const inputStream = fs.createReadStream(path, {});
@@ -21,7 +16,7 @@ const readWordFromFileAsync = (path, encoding) => {
 			input: inputStream.pipe(iconv.decodeStream(encoding))
 		})
 		.on('line',  readOneLine)
-		.on('close', readOneLine);
+		.on('close', () => resolve(words.join('\n')));
 	});
 }
 module.exports = readWordFromFileAsync;
