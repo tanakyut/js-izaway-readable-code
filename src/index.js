@@ -8,5 +8,5 @@ if (!fileName) {
 const encoding = 'utf-8';
 
 readWordFromFileAsync(fileName, encoding).then(
-	word => console.log(word),
+	output => console.log(output),
 	(e) => console.error(`ファイル ${fileName} 読み込み中にエラーが発生しました。：\n${e.message}`));
