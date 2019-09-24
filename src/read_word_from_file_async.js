@@ -14,10 +14,11 @@ const readWordFromFileAsync = (path, encoding) => {
 			resolve(line);
 		}
 
-		// TODO: ファイルが存在しない場合のエラーハンドリングができていない
+		const inputStream = fs.createReadStream(path, {});
+		inputStream.on('error', reject);
+
 		readline.createInterface({
-			input: fs.createReadStream(path, {})
-				.pipe(iconv.decodeStream(encoding))
+			input: inputStream.pipe(iconv.decodeStream(encoding))
 		})
 		.on('line',  readOneLine)
 		.on('close', readOneLine);
