@@ -2,23 +2,28 @@ const fs = require('fs');
 const iconv = require('iconv-lite');
 const readline = require("readline");
 
-const readWordFromFileAsync = (path, encoding) => {
+const readWordFromFileAsync = (path, encoding, wordId) => {
 	return new Promise((resolve, reject) => {
 		let nextId = 1;
-		const words = [];
+		const words = {};
 		const readOneLine = (line = '') => {
-			words.push({
+			words[nextId] = {
 				id: nextId,
 				word: line,
-			});
+			};
 			nextId += 1;
 		}
 
 		const createOutput = () => {
-			const output = words.map(({id, word}) => {
-				return `${id}: ${word}`;
-			}).join('\n');
-			resolve(output);
+			if (wordId == null) {
+				const output = Object.keys(words).map((id) => {
+					return `${words[id].id}: ${words[id].word}`;
+				}).join('\n');
+				resolve(output);
+				return;
+			}
+
+			resolve(`${words[wordId].id}: ${words[wordId].word}`);
 		}
 
 		const inputStream = fs.createReadStream(path, {});
